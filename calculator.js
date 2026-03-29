@@ -27,3 +27,31 @@ const clearDisplay = function () {
     display.value = '';
     displayTotal.value = '';
 };
+
+const calculate = function () {
+    const calculations = display.value;
+    const tokens = calculations.split(/([+\-*/])/);
+    let valores = tokens.map(t => (isNaN(t) ? t : Number(t)));
+    console.log(tokens);
+    console.log(valores);
+    let total = 0;
+    for (let i = 0; i < valores.length; i++) {
+        if (valores[i] === '/' || valores[i] === '*') {
+            let esquerda = valores[i - 1];
+            let direita = valores[i + 1];
+            total = valores[i] === '*' ? esquerda * direita : esquerda / direita;
+            valores.splice(i - 1, 3, total);
+            console.log(valores);
+
+            i--;
+        } else if (valores[i] === '-' || valores[i] === '+') {
+            const esquerda = valores[i - 1];
+            const direita = valores[i + 1];
+            total = valores[i] === '-' ? esquerda - direita : direita + esquerda;
+            valores.splice(i - 1, 3, total);
+            console.log(valores);
+            i--;
+        }
+    }
+    console.log(total);
+};
