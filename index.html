@@ -12,31 +12,32 @@
                 <div class="display-container">
                     <input id="displayTotal" type="text" readonly placeholder="0" />
                     <input id="display" type="text" inputmode="numeric" placeholder="0" />
+                    <input id="allMath" type="text" inputmode="numeric" placeholder="0" />
                 </div>
 
                 <div class="calculator-grid">
                     <button id="btn_CLEAR" class="btn-special" onclick="clearDisplay()">AC</button>
-                    <button onclick="showOnDisplay('%')">%</button>
+                    <button onclick="showOnDisplay(this.textContent)">%</button>
                     <button onclick="backspace()">DEL</button>
-                    <button class="btn-op" onclick="showOnDisplay('/')">/</button>
+                    <button class="btn-op" onclick="showOnDisplay(this.textContent)">/</button>
 
-                    <button onclick="showOnDisplay('7')">7</button>
-                    <button onclick="showOnDisplay('8')">8</button>
-                    <button onclick="showOnDisplay('9')">9</button>
+                    <button onclick="showOnDisplay(this.textContent)">7</button>
+                    <button onclick="showOnDisplay(this.textContent)">8</button>
+                    <button onclick="showOnDisplay(this.textContent)">9</button>
                     <button class="btn-op" id="btn_X" onclick="showOnDisplay('*')">×</button>
 
-                    <button onclick="showOnDisplay('4')">4</button>
-                    <button onclick="showOnDisplay('5')">5</button>
-                    <button onclick="showOnDisplay('6')">6</button>
-                    <button class="btn-op" id="btn_-" onclick="showOnDisplay('-')">-</button>
+                    <button onclick="showOnDisplay(this.textContent)">4</button>
+                    <button onclick="showOnDisplay(this.textContent)">5</button>
+                    <button onclick="showOnDisplay(this.textContent)">6</button>
+                    <button class="btn-op" id="btn_-" onclick="showOnDisplay(this.textContent)">-</button>
 
-                    <button onclick="showOnDisplay('1')">1</button>
-                    <button onclick="showOnDisplay('2')">2</button>
-                    <button onclick="showOnDisplay('3')">3</button>
-                    <button class="btn-op" id="btn_+" onclick="showOnDisplay('+')">+</button>
+                    <button onclick="showOnDisplay(this.textContent)">1</button>
+                    <button onclick="showOnDisplay(this.textContent)">2</button>
+                    <button onclick="showOnDisplay(this.textContent)">3</button>
+                    <button class="btn-op" id="btn_+" onclick="showOnDisplay(this.textContent)">+</button>
 
-                    <button id="btn_0" class="span-two" onclick="showOnDisplay('0')">0</button>
-                    <button id="btn_." onclick="showOnDisplay('.')">.</button>
+                    <button id="btn_0" class="span-two" onclick="showOnDisplay(this.textContent)">0</button>
+                    <button id="btn_." onclick="showOnDisplay(this.textContent)">.</button>
                     <button id="btn_equal" class="btn-op" onclick="calculate()">=</button>
                 </div>
             </div>
