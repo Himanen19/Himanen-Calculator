@@ -12,9 +12,23 @@ const btn9 = document.getElementById('btn_9');
 const btn0 = document.getElementById('btn_0');
 const btnMultiplica = document.getElementById('btn_X');
 const btnDivide = document.getElementById('btn_/');
-const btnMais = document.getElementById('btn_+');
-const btnMenos = document.getElementById('btn_-');
+const btnAdd = document.getElementById('btn_+');
+const btnSubt = document.getElementById('btn_-');
 const btnPonto = document.getElementById('btn_.');
-btn1.addEventListener('click', () => console.log(`um`));
+const display = document.getElementById('display');
+const displayTotal = document.getElementById('displayTotal');
+let currentValue = 0;
+btn1.addEventListener('click', function () {
+    showOnDisplay(1);
+});
 
-btnMultiplica.addEventListener('click', () => console.log(`*`));
+const showOnDisplay = function (digitPressed) {
+    display.value += digitPressed;
+};
+
+btnAdd.addEventListener('click', function () {
+    currentValue = +display.value;
+    displayTotal.value += currentValue + '+';
+    display.value = '';
+    console.log(currentValue);
+});
