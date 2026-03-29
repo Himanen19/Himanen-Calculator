@@ -33,6 +33,7 @@ body {
 }
 
 #displayTotal,
+#allMath,
 #display {
     width: 100%;
     border: none;
@@ -44,6 +45,12 @@ body {
 
 #displayTotal {
     font-size: 1rem;
+    color: #888;
+    margin-bottom: 5px;
+    min-height: 1.2rem;
+}
+#allMath {
+    font-size: 0.7rem;
     color: #888;
     margin-bottom: 5px;
     min-height: 1.2rem;

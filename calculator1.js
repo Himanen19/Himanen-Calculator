@@ -19,7 +19,6 @@ const block2OperationsInaRow = function (digit) {
 const showOnDisplay = function (digit) {
     // impedir 2 operadores seguidos
     block2OperationsInaRow(digit);
-
     display.focus();
 };
 
@@ -46,8 +45,7 @@ const calculate = function () {
             total = cleanValue[i] === '*' ? valueleft * valueright : valueleft / valueright;
             allOperations.push(display.value);
             allOperations.push(total);
-            console.log(allOperations);
-
+            // console.log(allOperations);
             cleanValue.splice(i - 1, 3, total);
             i--;
         }
@@ -64,18 +62,13 @@ const calculate = function () {
             i--;
         }
     }
-    console.log(allOperations);
-
-    let novoHistorico = allMath.value;
-    for (let i = 0; i < allOperations.length; i++) {
-        i % 2 ? (novoHistorico += `= ${allOperations[i]})`) : (novoHistorico += `(${allOperations[i]} `);
-    }
-    console.log(novoHistorico.length);
-
-    novoHistorico.length > 41 ? (allMath.value = `...${novoHistorico.slice(-38)}`) : (allMath.value = novoHistorico);
-
     displayTotal.value = display.value;
     display.value = Number(total.toFixed(12));
+
+    let novoHistorico = allMath.value;
+    const entradaAtual = `${displayTotal.value} = ${display.value} `;
+    novoHistorico += `(${displayTotal.value} = ${display.value}) `;
+    novoHistorico.length > 55 ? (allMath.value = `...${novoHistorico.slice(-52)}`) : (allMath.value = novoHistorico);
     display.focus();
 };
 
