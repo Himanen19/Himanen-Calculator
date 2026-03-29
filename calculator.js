@@ -20,6 +20,7 @@ const displayTotal = document.getElementById('displayTotal');
 
 const showOnDisplay = function (digitPressed) {
     display.value += digitPressed;
+    display.focus();
 };
 
 display.addEventListener('input', function () {
@@ -29,6 +30,7 @@ display.addEventListener('input', function () {
 const clearDisplay = function () {
     display.value = '';
     displayTotal.value = '';
+    display.focus();
 };
 
 const calculate = function () {
@@ -66,4 +68,5 @@ const calculate = function () {
     // att o display
     displayTotal.value = total;
     console.log(total);
+    display.focus();
 };
