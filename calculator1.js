@@ -3,18 +3,23 @@ const display = document.getElementById('display');
 const displayTotal = document.getElementById('displayTotal');
 const allMath = document.getElementById('allMath');
 let allOperations = [];
-const showOnDisplay = function (digit) {
+const block2OperationsInaRow = function (digit) {
     const ultimoChar = display.value.slice(-1);
-    // impedir 2 operadores seguidos
     const operadores = ['*', '/', '+', '-'];
     if (display.value === '' && operadores.includes(digit)) {
-        return;
+        return false;
     }
     if (operadores.includes(digit) && operadores.includes(ultimoChar)) {
         display.value = display.value.slice(0, -1) + digit;
     } else {
         display.value += digit;
     }
+    return true;
+};
+const showOnDisplay = function (digit) {
+    // impedir 2 operadores seguidos
+    block2OperationsInaRow(digit);
+
     display.focus();
 };
 
@@ -35,9 +40,11 @@ const calculate = function () {
         if (cleanValue[i] === '*' || cleanValue[i] === '/') {
             const valueleft = cleanValue[i - 1];
             const valueright = cleanValue[i + 1];
+            if (cleanValue[i] === '/' && cleanValue[i + 1] === 0) {
+                return (display.value = `CAN'T DIVIDE BY 0`);
+            }
             total = cleanValue[i] === '*' ? valueleft * valueright : valueleft / valueright;
             allOperations.push(display.value);
-
             allOperations.push(total);
             console.log(allOperations);
 
@@ -75,6 +82,13 @@ const calculate = function () {
 display.addEventListener('input', () => (display.value = display.value.replace(/[^0-9-+/*./]/g, '')));
 document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' || event.key === '=') {
+        event.preventDefault();
         calculate();
+    }
+    const operadores = ['*', '/', '+', '-'];
+
+    if (operadores.includes(event.key)) {
+        event.preventDefault();
+        block2OperationsInaRow(event.key);
     }
 });
