@@ -21,6 +21,7 @@ const showOnDisplay = function (digit) {
 const clearDisplay = function () {
     display.value = '';
     displayTotal.value = '';
+    allMath.value = '';
     display.focus();
 };
 
@@ -30,23 +31,6 @@ const calculate = function () {
     const cleanValue = x.map(t => (isNaN(t) ? t : Number(t)));
     allOperations = [];
     // first / and *
-    // cleanValue.forEach((value, index) => {
-    //     if (value === '*' || value === '/') {
-    //         console.log(value);
-
-    //         const valueleft = cleanValue[index - 1];
-    //         const valueright = cleanValue[index + 1];
-    //         total = value === '*' ? valueleft * valueright : valueleft / valueright;
-
-    //         allOperations.push(display.value);
-
-    //         allOperations.push(total);
-    //         console.log(allOperations);
-
-    //         cleanValue.splice(index - 1, 3, total);
-    //         index--;
-    //     }
-    // });
     for (let i = 0; i < cleanValue.length; i++) {
         if (cleanValue[i] === '*' || cleanValue[i] === '/') {
             const valueleft = cleanValue[i - 1];
@@ -77,19 +61,18 @@ const calculate = function () {
 
     let novoHistorico = allMath.value;
     for (let i = 0; i < allOperations.length; i++) {
-        i % 2 ? (novoHistorico += `= ${allOperations[i]})`) : (novoHistorico += `( ${allOperations[i]} `);
+        i % 2 ? (novoHistorico += `= ${allOperations[i]})`) : (novoHistorico += `(${allOperations[i]} `);
     }
     console.log(novoHistorico.length);
 
-    novoHistorico.length > 50 ? (novoHistorico = novoHistorico.slice(-47)) : (novoHistorico = novoHistorico);
+    novoHistorico.length > 41 ? (allMath.value = `...${novoHistorico.slice(-38)}`) : (allMath.value = novoHistorico);
 
-    allMath.value = novoHistorico;
     displayTotal.value = display.value;
     display.value = Number(total.toFixed(12));
     display.focus();
 };
 
-display.addEventListener('input', () => (display.value = display.value.replace(/[^0-9-+/*/]./g, '')));
+display.addEventListener('input', () => (display.value = display.value.replace(/[^0-9-+/*./]/g, '')));
 document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' || event.key === '=') {
         calculate();
