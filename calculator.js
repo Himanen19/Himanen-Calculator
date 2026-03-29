@@ -17,7 +17,6 @@
 // const btnPonto = document.getElementById('btn_.');
 const display = document.getElementById('display');
 const displayTotal = document.getElementById('displayTotal');
-let currentValue = 0;
 
 const showOnDisplay = function (digitPressed) {
     display.value += digitPressed;
@@ -26,6 +25,7 @@ const showOnDisplay = function (digitPressed) {
 const clearDisplay = function () {
     display.value = '';
     displayTotal.value = '';
+    totalMath.value = '';
 };
 
 const calculate = function () {
@@ -36,22 +36,17 @@ const calculate = function () {
     console.log(valores);
     let total = 0;
     for (let i = 0; i < valores.length; i++) {
-        if (valores[i] === '/' || valores[i] === '*') {
+        if (valores[i] === '/' || valores[i] === '*' || valores[i] === '-' || valores[i] === '+') {
             let esquerda = valores[i - 1];
             let direita = valores[i + 1];
-            total = valores[i] === '*' ? esquerda * direita : esquerda / direita;
+            total = valores[i] === '*' ? esquerda * direita : valores[i] === '/' ? esquerda / direita : valores[i] === '-' ? esquerda - direita : valores[i] === '+' ? esquerda + direita : '';
             valores.splice(i - 1, 3, total);
             console.log(valores);
 
             i--;
-        } else if (valores[i] === '-' || valores[i] === '+') {
-            const esquerda = valores[i - 1];
-            const direita = valores[i + 1];
-            total = valores[i] === '-' ? esquerda - direita : direita + esquerda;
-            valores.splice(i - 1, 3, total);
-            console.log(valores);
-            i--;
         }
     }
+
+    displayTotal.value = total;
     console.log(total);
 };
