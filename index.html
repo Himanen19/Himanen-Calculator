@@ -7,27 +7,27 @@
     </head>
     <body>
         <div>
-              <input id="displayTotal" type="text" />
+            <input id="displayTotal" type="text" />
             <input id="display" type="text" />
         </div>
         <div id="keys">
-            <button id="btn_1">1</button>
-            <button id="btn_12>2</button>
-            <button id="btn_3">3</button>
-            <button id="btn_4">4</button>
-            <button id="btn_5">5</button>
-            <button id="btn_6">6</button>
-            <button id="btn_7">7</button>
-            <button id="btn_8">8</button>
-            <button id="btn_9">9</button>
-            <button id="btn_0">0</button>
-            <button id="btn_+">+</button>
-            <button id="btn_-">-</button>
-            <button id="btn_CLEAR">CLEAR</button>
-            <button id="btn_X">X</button>
-            <button id="btn_%">%</button>
-            <button id="btn_.">.</button>
-                 <button id="btn_/">/</button>
+            <button id="btn_1" onclick="showOnDisplay(this.textContent)">1</button>
+            <button id="btn_2" onclick="showOnDisplay(this.textContent)">2</button>
+            <button id="btn_3" onclick="showOnDisplay(this.textContent)">3</button>
+            <button id="btn_4" onclick="showOnDisplay(this.textContent)">4</button>
+            <button id="btn_5" onclick="showOnDisplay(this.textContent)">5</button>
+            <button id="btn_6" onclick="showOnDisplay(this.textContent)">6</button>
+            <button id="btn_7" onclick="showOnDisplay(this.textContent)">7</button>
+            <button id="btn_8" onclick="showOnDisplay(this.textContent)">8</button>
+            <button id="btn_9" onclick="showOnDisplay(this.textContent)">9</button>
+            <button id="btn_0" onclick="showOnDisplay(this.textContent)">0</button>
+            <button id="btn_+" onclick="showOnDisplay(this.textContent)">+</button>
+            <button id="btn_-" onclick="showOnDisplay(this.textContent)">-</button>
+            <button id="btn_CLEAR" onclick="clearDisplay()">CLEAR</button>
+            <button id="btn_X" onclick="showOnDisplay('*')">X</button>
+            <button id="btn_%" onclick="showOnDisplay(this.textContent)">%</button>
+            <button id="btn_." onclick="showOnDisplay(this.textContent)">.</button>
+            <button id="btn_/" onclick="showOnDisplay(this.textContent)">/</button>
         </div>
         <div></div>
         <script src="calculator.js"></script>
