@@ -31,18 +31,21 @@ const clearDisplay = function () {
 
 const calculate = function () {
     let total = 0;
-    let x = display.value.replace(/[a-zA-Z]./g, '').split(/([+\-*/])/);
-    const cleanValue = x.map(t => (isNaN(t) ? t : Number(t)));
+    // let x = display.value.replace(/[a-zA-Z]./g, '').split(/([+\-*/])/);
+    const cleanValue = display.value
+        .replace(/[a-zA-Z]./g, '')
+        .split(/([+\-*/%])/)
+        .map(t => (isNaN(t) ? t : Number(t)));
     allOperations = [];
     // first / and *
     for (let i = 0; i < cleanValue.length; i++) {
-        if (cleanValue[i] === '*' || cleanValue[i] === '/') {
+        if (cleanValue[i] === '*' || cleanValue[i] === '/' || cleanValue[i] === '%') {
             const valueleft = cleanValue[i - 1];
             const valueright = cleanValue[i + 1];
             if (cleanValue[i] === '/' && cleanValue[i + 1] === 0) {
                 return (display.value = `CAN'T DIVIDE BY 0`);
             }
-            total = cleanValue[i] === '*' ? valueleft * valueright : valueleft / valueright;
+            total = cleanValue[i] === '*' ? valueleft * valueright : cleanValue[i] === '/' ? valueleft / valueright : valueleft * (valueright / 100);
             allOperations.push(display.value);
             allOperations.push(total);
             // console.log(allOperations);
@@ -85,3 +88,9 @@ document.addEventListener('keydown', function (event) {
         block2OperationsInaRow(event.key);
     }
 });
+
+const del = function () {
+    display.value = '';
+    displayTotal.value = '';
+    allMath.value = '';
+};
